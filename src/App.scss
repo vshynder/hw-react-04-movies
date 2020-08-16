@@ -1,0 +1,174 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.App {
+  text-align: center;
+}
+
+.nav {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding: 20px 0;
+  background-color: lightsteelblue;
+
+  &__link {
+    color: #575757;
+    text-decoration: none;
+    font-size: 30px;
+    transition: 0.2s;
+    border-bottom: 4px solid transparent;
+    &:hover {
+      color: black;
+      border-bottom: 4px solid black;
+    }
+  }
+}
+
+.form {
+  display: flex;
+  width: 90%;
+  max-width: 800px;
+  margin: 30px auto 0;
+  justify-content: space-between;
+  align-items: center;
+
+  &__input {
+    width: 80%;
+    font-size: 24px;
+    padding: 5px 10px;
+    border: none;
+    border-bottom: 1px solid #ebebeb;
+    outline: none;
+  }
+
+  &__submit {
+    width: 20%;
+    font-size: 24px;
+    border: none;
+    background: none;
+    outline: none;
+    color: #575757;
+    transition: 0.2s;
+    padding: 5px 10px;
+
+    &:hover {
+      color: black;
+      background-color: #f5f5f5;
+    }
+  }
+}
+
+.movies-list {
+  width: 90%;
+  max-width: 800px;
+  text-align: center;
+  margin: 50px auto 0;
+  padding: 10px;
+  list-style: none;
+
+  &__link {
+    color: black;
+    text-decoration: none;
+  }
+  &__movie {
+    font-size: 24px;
+    padding: 6px 0;
+    &:nth-child(2n) {
+      background-color: rgb(232, 242, 255);
+    }
+  }
+}
+
+.movie-container {
+  height: calc(100vh - 90px);
+
+  display: flex;
+  flex-direction: column;
+}
+
+.movie-card {
+  width: 100%;
+  max-width: 1500px;
+  display: flex;
+  justify-content: space-between;
+  position: relative;
+
+  &__image {
+    &--src {
+      width: 100%;
+      height: auto;
+    }
+  }
+
+  &__text {
+    text-align: left;
+    margin: 50px 10px 0 30px;
+    max-height: 600px;
+  }
+
+  &__title {
+    margin-bottom: 20px;
+  }
+
+  &__votes {
+    margin-bottom: 30px;
+  }
+
+  &__overview {
+    margin-bottom: 15px;
+
+    &--desc {
+      margin-bottom: 30px;
+    }
+  }
+
+  &__genres {
+    margin-bottom: 15px;
+
+    &--desc {
+    }
+  }
+}
+
+.additional__info {
+  height: 100px;
+
+  &--name {
+    margin-bottom: 10px;
+  }
+  &--link {
+    color: black;
+    text-decoration: none;
+  }
+}
+
+@media (max-width: 400px) {
+  .movie-card {
+    &__image--src {
+      height: 100%;
+      width: auto;
+      transform: translateX(-25%);
+    }
+  }
+}
+
+@media (max-width: 700px) {
+  .movie-card {
+    &__image--src {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: -1;
+      opacity: 0.4;
+    }
+    &__text {
+      color: #ffffff;
+      text-shadow: 3px 5px 2px #474747;
+    }
+  }
+}
