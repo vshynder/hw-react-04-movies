@@ -2,7 +2,6 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  overflow: hidden;
 }
 
 .App {
@@ -100,8 +99,10 @@
 
   &__image {
     &--src {
+      min-width: 500px;
       width: 100%;
       height: auto;
+      min-height: 500px;
     }
   }
 
@@ -144,6 +145,28 @@
   &--link {
     color: black;
     text-decoration: none;
+  }
+}
+
+.cast-list {
+  border-top: 1px solid black;
+  margin-top: 30px;
+  padding: 20px 0 0 20px;
+  text-align: left;
+  &__image {
+    width: 100px;
+  }
+}
+
+.review-list {
+  border-top: 1px solid black;
+  margin-top: 30px;
+  padding: 20px 20px 0 20px;
+  text-align: left;
+
+  &__name {
+    font-size: 20px;
+    font-weight: bold;
   }
 }
 

@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.scss";
-import { BrowserRouter, Link, Switch, Route } from "react-router-dom";
+import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom";
 import Homepage from "./components/screens/Homepage";
 import MoviesPage from "./components/screens/MoviesPage";
 import MovieInfo from "./components/screens/MovieInfo";
@@ -21,6 +21,7 @@ function App() {
           <Route path="/movies/:movieId" component={MovieInfo} />
           <Route path="/movies" component={MoviesPage} />
           <Route exact path="/" component={Homepage} />
+          <Redirect to="/" />
         </Switch>
       </div>
     </BrowserRouter>

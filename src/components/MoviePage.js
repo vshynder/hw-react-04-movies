@@ -1,40 +1,23 @@
 import React from "react";
 import {
-  BrowserRouter,
   Route,
   Switch,
   Link,
   withRouter,
+  useRouteMatch,
 } from "react-router-dom";
+import * as image from "../images/empty.png";
+
+import Cast from "./Cast";
+import Review from "./Review";
 
 const MoviePage = (props) => {
-  return (
-    <BrowserRouter>
-      <Switch>
-        <Route path="/review">
-          <MovieCard path="review" {...props} />
-        </Route>
-        <Route path="/cast">
-          <MovieCard path="cast" {...props} />
-        </Route>
-        <Route path="/">
-          <MovieCard {...props} />
-        </Route>
-      </Switch>
-    </BrowserRouter>
-  );
-};
-
-const MovieCard = (props) => {
   let genres = props.genres.reduce((acc, genre) => {
     acc += `${genre.name}, `;
     return acc;
   }, "");
   genres = genres.substring(0, genres.length - 2);
-  const { location } = props;
-  const castTo = `${location.pathname}/cast`;
-  const reviewsTo = `${location.pathname}/reviews`;
-  console.log(props.path);
+  const { path, url } = useRouteMatch();
   return (
     <div className="movie-container">
       <div className="movie-card">
@@ -42,7 +25,11 @@ const MovieCard = (props) => {
           <img
             className="movie-card__image--src"
             alt={props.title}
-            src={`https://image.tmdb.org/t/p/original/${props.poster_path}`}
+            src={
+              props.poster_path
+                ? `https://image.tmdb.org/t/p/original/${props.poster_path}`
+                : image
+            }
           />
         </div>
         <div className="movie-card__text">
@@ -60,23 +47,23 @@ const MovieCard = (props) => {
         <h3 className="additional__info--name">Additional information</h3>
         <ul className="additional__info--list">
           <li className="additional__info--listItem">
-            <Link to={castTo} className="additional__info--link">
-              Cast
-            </Link>
+            <Link to={`${url}/cast`}>Cast</Link>
           </li>
 
           <li className="additional__info--listItem">
-            <Link to={reviewsTo} className="additional__info--link">
-              Reviews
-            </Link>
+            <Link to={`${url}/review`}>Review</Link>
           </li>
         </ul>
       </div>
-      {props.path === "cast" ? (
-        <div>Cast loading</div>
-      ) : props.path === "review" ? (
-        <div>Review Loading</div>
-      ) : null}
+
+      <Switch>
+        <Route path={`${path}/cast`}>
+          <Cast movieId={props.id} />
+        </Route>
+        <Route path={`${path}/review`}>
+          <Review movieId={props.id} />
+        </Route>
+      </Switch>
     </div>
   );
 };
