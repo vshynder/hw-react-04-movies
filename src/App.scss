@@ -170,6 +170,23 @@
   }
 }
 
+.movie_page {
+  text-align: left;
+
+  &__button {
+    margin: 30px 0;
+    width: 140px;
+    height: 30px;
+    background: none;
+    border: none;
+    background: #ebebeb;
+    outline: none;
+    &:hover {
+      background: #c7c7c7;
+    }
+  }
+}
+
 @media (max-width: 400px) {
   .movie-card {
     &__image--src {

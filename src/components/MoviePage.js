@@ -8,8 +8,13 @@ import {
 } from "react-router-dom";
 import * as image from "../images/empty.png";
 
-import Cast from "./Cast";
-import Review from "./Review";
+import PropTypes from "prop-types";
+
+const Cast = React.lazy(() => import("./Cast"));
+const Review = React.lazy(() => import("./Review"));
+
+// import Cast from "./Cast";
+// import Review from "./Review";
 
 const MoviePage = (props) => {
   let genres = props.genres.reduce((acc, genre) => {
@@ -66,6 +71,15 @@ const MoviePage = (props) => {
       </Switch>
     </div>
   );
+};
+
+MoviePage.propTypes = {
+  genres: PropTypes.array,
+  title: PropTypes.string,
+  poster_path: PropTypes.string,
+  vote_average: PropTypes.number,
+  overview: PropTypes.string,
+  id: PropTypes.number,
 };
 
 export default withRouter(MoviePage);

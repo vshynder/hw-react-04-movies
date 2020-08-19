@@ -5,6 +5,8 @@ import CastItem from "./CastItem";
 import CONSTANTS from "../constants";
 import * as image from "../images/empty.png";
 
+import PropTypes from "prop-types";
+
 class Cast extends React.Component {
   state = {
     cast: [],
@@ -47,5 +49,9 @@ class Cast extends React.Component {
     );
   }
 }
+
+Cast.propTypes = {
+  movieId: PropTypes.number,
+};
 
 export default withRouter(Cast);

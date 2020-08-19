@@ -1,6 +1,8 @@
 import React from "react";
 import ReviewItem from "./ReviewItem";
 
+import PropTypes from "prop-types";
+
 import CONSTANTS from "../constants";
 
 class Review extends React.Component {
@@ -38,5 +40,9 @@ class Review extends React.Component {
     );
   }
 }
+
+Review.propTypes = {
+  movieId: PropTypes.number,
+};
 
 export default Review;

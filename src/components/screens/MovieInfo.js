@@ -15,6 +15,18 @@ class MovieInfo extends React.Component {
     });
   }
 
+  handleBack = () => {
+    if (
+      this.props.location.pathname.includes("cast") ||
+      this.props.location.pathname.includes("review")
+    ) {
+      this.props.history.goBack();
+      this.props.history.goBack();
+    } else {
+      this.props.history.goBack();
+    }
+  };
+
   loadMovie = async () => {
     const { movieId } = this.props.match.params;
 
@@ -26,7 +38,14 @@ class MovieInfo extends React.Component {
   };
 
   render() {
-    return <div>{this.state.movie ? this.state.movie : <p>Loading</p>}</div>;
+    return (
+      <div className="movie_page">
+        <button onClick={this.handleBack} className="movie_page__button">
+          Go back
+        </button>
+        {this.state.movie}
+      </div>
+    );
   }
 }
 

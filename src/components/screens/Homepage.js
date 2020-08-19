@@ -1,7 +1,9 @@
 import React from "react";
-import RenderMovies from "../RenderMovies";
+// import RenderMovies from "../RenderMovies";
 
 import CONSTANTS from "../../constants";
+
+const RenderMovies = React.lazy(() => import("../RenderMovies"));
 
 class Homepage extends React.Component {
   state = {

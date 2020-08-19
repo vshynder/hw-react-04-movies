@@ -1,9 +1,13 @@
-import React from "react";
+import React, { Suspense } from "react";
 import "./App.scss";
 import { BrowserRouter, Link, Switch, Route, Redirect } from "react-router-dom";
-import Homepage from "./components/screens/Homepage";
-import MoviesPage from "./components/screens/MoviesPage";
-import MovieInfo from "./components/screens/MovieInfo";
+// import Homepage from "./components/screens/Homepage";
+// import MoviesPage from "./components/screens/MoviesPage";
+// import MovieInfo from "./components/screens/MovieInfo";
+
+const Homepage = React.lazy(() => import("./components/screens/Homepage"));
+const MoviesPage = React.lazy(() => import("./components/screens/MoviesPage"));
+const MovieInfo = React.lazy(() => import("./components/screens/MovieInfo"));
 
 function App() {
   return (
@@ -17,12 +21,20 @@ function App() {
             Movies
           </Link>
         </div>
-        <Switch>
-          <Route path="/movies/:movieId" component={MovieInfo} />
-          <Route path="/movies" component={MoviesPage} />
-          <Route exact path="/" component={Homepage} />
-          <Redirect to="/" />
-        </Switch>
+        <Suspense fallback={<div>Loading ...</div>}>
+          <Switch>
+            <Route path="/movies/:movieId">
+              <MovieInfo />
+            </Route>
+            <Route path="/movies">
+              <MoviesPage />
+            </Route>
+            <Route exact path="/">
+              <Homepage />
+            </Route>
+            <Redirect to="/" />
+          </Switch>
+        </Suspense>
       </div>
     </BrowserRouter>
   );
